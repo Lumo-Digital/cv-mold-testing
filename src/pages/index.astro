@@ -1,17 +1,545 @@
 ---
-
+import Dither from '../components/Dither';
+import '../styles/global.css';
+import {
+  CircleCheck,
+  Zap,
+  Wind,
+  Eye,
+  ArrowBigDownDash,
+  Stethoscope,
+} from 'lucide-astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <link rel='icon' href='/favicon.ico' />
+    <meta name='viewport' content='width=device-width' />
+    <meta name='generator' content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <div
+      id='green-overlay'
+      class='w-full h-dvh fixed -z-40 pointer-events-none bg-[#31a948]'
+      style='opacity: 0'
+    >
+    </div>
+    <div class='w-full h-dvh fixed -z-50'>
+      <Dither
+        client:load
+        waveColor={[0.5, 1, 0.45]}
+        disableAnimation={false}
+        enableMouseInteraction
+        mouseRadius={0}
+        colorNum={2}
+        waveAmplitude={0.2}
+        waveFrequency={3}
+        waveSpeed={0.06}
+      />
+    </div>
+    <div id='smooth-wrapper'>
+      <div id='smooth-content'>
+        <header class='bg-white rounded-lg mx-6 p-4 shadow mt-6'>
+          <a href='#'><img src='/logo.svg' alt='' /></a>
+        </header>
+        <main class='mt-20 flex flex-col gap-y-40 px-6'>
+          <section
+            id='hero'
+            class='w-full max-w-500 mx-auto grid grid-cols-12 gap-x-10'
+          >
+            <div
+              class='flex flex-col gap-y-5 h-full justify-center items-start col-span-6'
+            >
+              <h1 class='text-7xl font-semibold text-pretty'>
+                Lorem ipsum dolor sit amet
+              </h1>
+              <p class='text-pretty'>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. In quas
+                ut iste natus vitae, repellendus autem beatae aperiam
+                perferendis at hic voluptatem nihil repudiandae quia maxime
+                laudantium, consequatur totam. Iure adipisci veritatis,
+                voluptate exercitationem ut sed totam natus inventore commodi?
+              </p>
+              <button
+                class='rounded-lg bg-[#2C2F47] inline-flex text-white py-3 px-6'
+                >Ad lorem ipsum</button
+              >
+            </div>
+            <div class='col-start-8 col-span-5'>
+              <img
+                class='rounded-lg'
+                src='https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+                alt=''
+              />
+            </div>
+          </section>
+          <section
+            id='symptoms'
+            class='w-full max-w-500 mx-auto grid grid-cols-12 gap-x-10 gap-y-10'
+          >
+            <h2 class='text-5xl font-semibold col-span-5 text-pretty self-end'>
+              Mold: A Silent Enemy in Your Home
+            </h2>
+            <p class='col-span-6 col-start-7 self-end text-pretty'>
+              Mold can grow anywhere there's moisture in your home without
+              youeven noticing. Behind walls, under carpets, in the bathroom
+              orbasement. As it grows, it releases spores that you and your
+              family breathe every day
+            </p>
+            <div class='col-span-12 flex gap-x-5'>
+              <div
+                class='bg-white p-6 flex flex-col justify-between rounded-lg flex-1 gap-y-16 shadow'
+              >
+                <Zap size='35' color='#2c2f47' />
+                <p class='text-2xl text-pretty'>Frequent headache</p>
+              </div>
+              <div
+                class='bg-white p-6 flex flex-col justify-between rounded-lg flex-1 gap-y-16 shadow'
+              >
+                <Wind size='35' color='#2c2f47' />
+                <p class='text-2xl text-pretty'>
+                  Nasal congestion and Sneezing
+                </p>
+              </div>
+              <div
+                class='bg-white p-6 flex flex-col justify-between rounded-lg flex-1 gap-y-16 shadow'
+              >
+                <Eye size='35' color='#2c2f47' />
+                <p class='text-2xl text-pretty'>Eye and throat irritation</p>
+              </div>
+              <div
+                class='bg-white p-6 flex flex-col justify-between rounded-lg flex-1 gap-y-16 shadow'
+              >
+                <ArrowBigDownDash size='35' color='#2c2f47' />
+                <p class='text-2xl text-pretty'>Unexplained fatigue</p>
+              </div>
+              <div
+                class='bg-white p-6 flex flex-col justify-between rounded-lg flex-1 gap-y-16 shadow'
+              >
+                <Stethoscope size='35' color='#2c2f47' />
+                <p class='text-2xl text-pretty'>Respiratory issues</p>
+              </div>
+            </div>
+          </section>
+          <section
+            id='why-test'
+            class='h-[60dvh] max-w-500 mx-auto flex flex-col justify-center gap-y-10'
+          >
+            <p
+              class='why-test-text text-center text-5xl font-semibold'
+              style='color: transparent'
+            >
+              A professional mold test gives you the information you need to
+              protect your home and your family.
+            </p>
+            <p
+              class='why-test-text text-center text-5xl font-semibold'
+              style='color: transparent'
+            >
+              Whether you're experiencing symptoms, dealing with moisture
+              issues, or simply want peace of mind — testing is the first step.
+            </p>
+          </section>
+          <section id='steps' class='w-full max-w-500 mx-auto'>
+            <h2
+              class='text-5xl font-semibold col-span-5 text-pretty self-end mb-10'
+            >
+              Professional Mold Testing in 4 Simple Steps
+            </h2>
+            <div class='grid grid-cols-12 gap-x-6 gap-y-6'>
+              <div class='col-span-3'>
+                <img
+                  class='w-full h-auto rounded-lg'
+                  src='https://images.unsplash.com/photo-1583847268964-b28dc8f51f92'
+                  alt=''
+                />
+              </div>
+              <div class='col-span-3'>
+                <img
+                  class='w-full h-auto rounded-lg'
+                  src='https://images.unsplash.com/photo-1583847268964-b28dc8f51f92'
+                  alt=''
+                />
+              </div>
+              <div class='col-span-3'>
+                <img
+                  class='w-full h-auto rounded-lg'
+                  src='https://images.unsplash.com/photo-1583847268964-b28dc8f51f92'
+                  alt=''
+                />
+              </div>
+              <div class='col-span-3'>
+                <img
+                  class='w-full h-auto rounded-lg'
+                  src='https://images.unsplash.com/photo-1583847268964-b28dc8f51f92'
+                  alt=''
+                />
+              </div>
+            </div>
+          </section>
+          <section id='test-description' class='w-full max-w-500 mx-auto'>
+            <h2 class='w-full text-center text-5xl font-semibold mb-10'>
+              What You Get With Every Test
+            </h2>
+            <ul
+              class='grid grid-cols-12 col-start-2 col-span-10 gap-x-20 gap-y-3 text-2xl'
+            >
+              <li class='col-span-4 col-start-3 flex items-center gap-2'>
+                <CircleCheck />Professional on-site visit
+              </li>
+              <li class='col-span-4 flex items-center gap-2'>
+                <CircleCheck />Detailed report with mold types
+              </li>
+              <li class='col-span-4 col-start-3 flex items-center gap-2'>
+                <CircleCheck />Certified sample collection
+              </li>
+              <li class='col-span-4 flex items-center gap-2'>
+                <CircleCheck />Expert guidance on recommended next steps
+              </li>
+              <li class='col-span-4 col-start-3 flex items-center gap-2'>
+                <CircleCheck />Mandatory exterior test at no extra charge
+              </li>
+              <li class='col-span-4 flex items-center gap-2'>
+                <CircleCheck />Connection with trusted remediation professionals
+              </li>
+              <li class='col-span-4 col-start-3 flex items-center gap-2'>
+                <CircleCheck />Lab analysis by a certified laboratory
+              </li>
+            </ul>
+          </section>
+          <section
+            id='plans'
+            class='w-full max-w-500 mx-auto grid grid-cols-12 gap-x-10 gap-y-10'
+          >
+            <div class='col-span-4'>
+              <h2 class='w-full text-5xl font-semibold mb-10 text-pretty'>
+                Choose the Right Test for Your Home
+              </h2>
+              <p>
+                At CV Mold Testing, we make the process simple and transparent.
+              </p>
+              <small
+                >* Each area typically requires 2 test samples for accurate
+                results. Not sure how many areas you need? Contact us and we'll
+                help you decide</small
+              >
+            </div>
+            <div class='col-span-7 col-start-6 flex flex-col gap-y-5'>
+              <div
+                class='card bg-white border p-8 flex gap-x-10 rounded-2xl border-[#E7E3E4]'
+              >
+                <div class='flex flex-col w-1/3 gap-y-6'>
+                  <small class='uppercase tracking-[0.2rem]'>Premium Plan</small
+                  >
+                  <span class='text-5xl font-bold'>$200</span>
+                </div>
+                <div class='flex flex-col grow gap-y-6'>
+                  <small class='text-sm'>Features included</small>
+                  <ul class='flex flex-wrap gap-y-3'>
+                    <li class='w-1/2 flex gap-x-3'>
+                      <CircleCheck /> Ad lorem ipsum dolor
+                    </li>
+                    <li class='w-1/2 flex gap-x-3'>
+                      <CircleCheck /> Ad lorem ipsum dolor
+                    </li>
+                    <li class='w-1/2 flex gap-x-3'>
+                      <CircleCheck /> Ad lorem ipsum dolor
+                    </li>
+                    <li class='w-1/2 flex gap-x-3'>
+                      <CircleCheck /> Ad lorem ipsum dolor
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class='card bg-white border p-8 flex gap-x-10 rounded-2xl border-[#E7E3E4]'
+              >
+                <div class='flex flex-col w-1/3 gap-y-6'>
+                  <small class='uppercase tracking-[0.2rem]'>Premium Plan</small
+                  >
+                  <span class='text-5xl font-bold'>$200</span>
+                </div>
+                <div class='flex flex-col grow gap-y-6'>
+                  <small class='text-sm'>Features included</small>
+                  <ul class='flex flex-wrap gap-y-3'>
+                    <li class='w-1/2 flex gap-x-3'>
+                      <CircleCheck /> Ad lorem ipsum dolor
+                    </li>
+                    <li class='w-1/2 flex gap-x-3'>
+                      <CircleCheck /> Ad lorem ipsum dolor
+                    </li>
+                    <li class='w-1/2 flex gap-x-3'>
+                      <CircleCheck /> Ad lorem ipsum dolor
+                    </li>
+                    <li class='w-1/2 flex gap-x-3'>
+                      <CircleCheck /> Ad lorem ipsum dolor
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class='card bg-white border p-8 flex gap-x-10 rounded-2xl border-[#E7E3E4]'
+              >
+                <div class='flex flex-col w-1/3 gap-y-6'>
+                  <small class='uppercase tracking-[0.2rem]'>Premium Plan</small
+                  >
+                  <span class='text-5xl font-bold'>$200</span>
+                </div>
+                <div class='flex flex-col grow gap-y-6'>
+                  <small class='text-sm'>Features included</small>
+                  <ul class='flex flex-wrap gap-y-3'>
+                    <li class='w-1/2 flex gap-x-3'>
+                      <CircleCheck /> Ad lorem ipsum dolor
+                    </li>
+                    <li class='w-1/2 flex gap-x-3'>
+                      <CircleCheck /> Ad lorem ipsum dolor
+                    </li>
+                    <li class='w-1/2 flex gap-x-3'>
+                      <CircleCheck /> Ad lorem ipsum dolor
+                    </li>
+                    <li class='w-1/2 flex gap-x-3'>
+                      <CircleCheck /> Ad lorem ipsum dolor
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class='card bg-white border p-8 flex gap-x-10 rounded-2xl border-[#E7E3E4]'
+              >
+                <div class='flex flex-col w-1/3 gap-y-6'>
+                  <small class='uppercase tracking-[0.2rem]'>Premium Plan</small
+                  >
+                  <span class='text-5xl font-bold'>$200</span>
+                </div>
+                <div class='flex flex-col grow gap-y-6'>
+                  <small class='text-sm'>Features included</small>
+                  <ul class='flex flex-wrap gap-y-3'>
+                    <li class='w-1/2 flex gap-x-3'>
+                      <CircleCheck /> Ad lorem ipsum dolor
+                    </li>
+                    <li class='w-1/2 flex gap-x-3'>
+                      <CircleCheck /> Ad lorem ipsum dolor
+                    </li>
+                    <li class='w-1/2 flex gap-x-3'>
+                      <CircleCheck /> Ad lorem ipsum dolor
+                    </li>
+                    <li class='w-1/2 flex gap-x-3'>
+                      <CircleCheck /> Ad lorem ipsum dolor
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section
+            id='last-call'
+            class='w-full max-w-400 mx-auto flex flex-col gap-y-10 items-center'
+          >
+            <p class='text-center text-5xl font-semibold text-black'>
+              A professional mold test gives you the information you need to
+              protect your home and your family.
+            </p>
+            <p class='text-center text-5xl font-semibold text-black'>
+              Whether you're experiencing symptoms, dealing with moisture
+              issues, or simply want peace of mind — testing is the first step.
+            </p>
+          </section>
+          <section
+            class='w-full max-w-500 mx-auto grid grid-cols-12 gap-x-10 gap-y-10'
+          >
+            <div class='col-span-4'>
+              <h2 class='w-full text-5xl font-semibold mb-10 text-pretty'>
+                Schedule Your Mold Test
+              </h2>
+              <p class='text-balance mb-4'>
+                Fill out the form and we'll get back to you within 24 hours to
+                book your inspection or contact us:
+              </p>
+              <ul>
+                <li>+1 305 397 4966</li>
+                <li>+1 305 397 4966</li>
+                <li>info@cvmoldtesting.com</li>
+              </ul>
+            </div>
+            <div class='col-span-7 col-start-6 flex flex-col gap-y-5'>
+              <form action='' class='grid grid-cols-6 gap-x-5'>
+                <div class='col-span-3 flex flex-col mb-4'>
+                  <label for='' class='mb-2 text-sm'>Name</label>
+                  <input
+                    type='text'
+                    class='w-full bg-white rounded-lg border border-[#E7E3E4] p-3 outline-none focus:ring-2 focus:ring-[#2C2F47] transition-all duration-200'
+                  />
+                </div>
+                <div class='col-span-3 flex flex-col mb-4'>
+                  <label for='' class='mb-2 text-sm'>Email</label>
+                  <input
+                    type='email'
+                    class='w-full bg-white rounded-lg border border-[#E7E3E4] p-3 outline-none focus:ring-2 focus:ring-[#2C2F47] transition-all duration-200'
+                  />
+                </div>
+                <div class='col-span-3 flex flex-col mb-4'>
+                  <label for='' class='mb-2 text-sm'>Phone</label>
+                  <input
+                    type='text'
+                    class='w-full bg-white rounded-lg border border-[#E7E3E4] p-3 outline-none focus:ring-2 focus:ring-[#2C2F47] transition-all duration-200'
+                  />
+                </div>
+                <div class='col-span-3 flex flex-col mb-4'>
+                  <label for='' class='mb-2 text-sm'>Zip Code</label>
+                  <input
+                    type='email'
+                    class='w-full bg-white rounded-lg border border-[#E7E3E4] p-3 outline-none focus:ring-2 focus:ring-[#2C2F47] transition-all duration-200'
+                  />
+                </div>
+                <div class='col-span-6 flex flex-col mb-4'>
+                  <label class='mb-2 text-sm'>Choose your plan</label>
+                  <div class='grid grid-cols-4 gap-3'>
+                    <label
+                      class='relative block bg-white cursor-pointer rounded-lg border border-[#E7E3E4] p-4 leading-5 pb-6 transition-all duration-200 has-checked:border-[#2C2F47] has-checked:shadow-[0_0_0_2px_#2C2F47] text-3xl'
+                      for='plan-standard-4'
+                    >
+                      <input
+                        type='radio'
+                        class='absolute top-4 right-4 h-4 w-4 accent-[#2C2F47]'
+                        name='plan'
+                        id='plan-standard-4'
+                        value='standard-4'
+                      />
+                      <span class='uppercase text-sm block mb-4 tracking-widest'
+                        >Standard</span
+                      >
+                      4 areas
+                    </label>
+                    <label
+                      class='relative block bg-white cursor-pointer rounded-lg border border-[#E7E3E4] p-4 leading-5 pb-6 transition-all duration-200 has-checked:border-[#2C2F47] has-checked:shadow-[0_0_0_2px_#2C2F47] text-3xl'
+                      for='plan-standard-6'
+                    >
+                      <input
+                        type='radio'
+                        class='absolute top-3 right-3 h-4 w-4 accent-[#2C2F47]'
+                        name='plan'
+                        id='plan-standard-6'
+                        value='standard-6'
+                      />
+                      <span class='uppercase text-sm block mb-4 tracking-widest'
+                        >Standard</span
+                      >
+                      4 areas
+                    </label>
+                    <label
+                      class='relative block bg-white cursor-pointer rounded-lg border border-[#E7E3E4] p-4 leading-5 pb-6 transition-all duration-200 has-checked:border-[#2C2F47] has-checked:shadow-[0_0_0_2px_#2C2F47] text-3xl'
+                      for='plan-standard-8'
+                    >
+                      <input
+                        type='radio'
+                        class='absolute top-3 right-3 h-4 w-4 accent-[#2C2F47]'
+                        name='plan'
+                        id='plan-standard-8'
+                        value='standard-8'
+                      />
+                      <span class='uppercase text-sm block mb-4 tracking-widest'
+                        >Standard</span
+                      >
+                      4 areas
+                    </label>
+                    <label
+                      class='relative block bg-white cursor-pointer rounded-lg border border-[#E7E3E4] p-4 leading-5 pb-6 transition-all duration-200 has-checked:border-[#2C2F47] has-checked:shadow-[0_0_0_2px_#2C2F47] text-3xl'
+                      for='plan-custom'
+                    >
+                      <input
+                        type='radio'
+                        class='absolute top-3 right-3 h-4 w-4 accent-[#2C2F47]'
+                        name='plan'
+                        id='plan-custom'
+                        value='custom'
+                      />
+                      <span class='uppercase text-sm block mb-4 tracking-widest'
+                        >Standard</span
+                      >
+                      4 areas
+                    </label>
+                  </div>
+                </div>
+                <div class='col-span-6 flex flex-col mb-6'>
+                  <label for='' class='mb-2 text-sm'>Additional comments</label>
+                  <textarea
+                    name=''
+                    id=''
+                    class='bg-white rounded-lg border border-[#E7E3E4] p-3 outline-none focus:ring-2 focus:ring-[#2C2F47] transition-all duration-200'
+                  ></textarea>
+                </div>
+                <div class='col-span-6'>
+                  <button
+                    class='rounded-lg bg-[#2C2F47] inline-flex text-white py-3 px-6'
+                    >Ad lorem ipsum</button
+                  >
+                </div>
+              </form>
+            </div>
+          </section>
+        </main>
+        <footer
+          class='bg-white w-full mt-25 p-5 pb-11 border-t border-[#E7E3E4]'
+        >
+          <div
+            class='max-w-500 mx-auto flex justify-between text-sm items-center'
+          >
+            <p>© 2026 CV Mold Testing LLC</p>
+            <ul class='flex gap-x-4'>
+              <li>Instagram</li>
+              <li>Whatsapp</li>
+            </ul>
+            <ul class='flex gap-x-6'>
+              <li>Privacy Policy</li>
+              <li>Cookie Policy</li>
+            </ul>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script>
+      import gsap from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      import { ScrollSmoother } from 'gsap/ScrollSmoother';
+
+      gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+
+      ScrollSmoother.create({
+        wrapper: '#smooth-wrapper',
+        content: '#smooth-content',
+        smooth: 1.5,
+        effects: true,
+      });
+
+      window.addEventListener('load', () => {
+        ScrollTrigger.refresh();
+      });
+
+
+      const texts = gsap.utils.toArray<HTMLElement>('.why-test-text');
+      const greenOverlay = document.getElementById('green-overlay')!;
+      const adjacentSections = ['#symptoms', '#steps'].map(
+        (id) => document.querySelector(id)!,
+      );
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: '#why-test',
+            start: 'top 70%',
+            end: 'bottom 30%',
+            scrub: 0.8,
+          },
+        })
+        .to(greenOverlay, { opacity: 1, duration: 0.4 }, 0)
+        .to(adjacentSections, { opacity: 0, duration: 0.4 }, 0)
+        .to(texts, { color: '#ffffff', duration: 0.4, stagger: 0.15 }, 0)
+        .to(texts, { color: '#000000', duration: 0.4, stagger: 0.15 }, 0.6)
+        .to(greenOverlay, { opacity: 0, duration: 0.4 }, 0.6)
+        .to(adjacentSections, { opacity: 1, duration: 0.4 }, 0.6);
+    </script>
+  </body>
 </html>
