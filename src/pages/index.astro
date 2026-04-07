@@ -8,6 +8,7 @@ import {
   Eye,
   ArrowBigDownDash,
   Stethoscope,
+  LayoutGrid,
 } from 'lucide-astro';
 ---
 
@@ -18,7 +19,7 @@ import {
     <link rel='icon' href='/favicon.ico' />
     <meta name='viewport' content='width=device-width' />
     <meta name='generator' content={Astro.generator} />
-    <title>Astro</title>
+    <title>CV Mold Testing</title>
   </head>
   <body>
     <div
@@ -42,8 +43,34 @@ import {
     </div>
     <div id='smooth-wrapper'>
       <div id='smooth-content'>
-        <header class='bg-white rounded-lg mx-6 p-4 shadow mt-6'>
-          <a href='#'><img src='/logo.svg' alt='' /></a>
+        <header class='bg-white rounded-lg mx-6 shadow mt-6'>
+          <div
+            class='max-w-500 mx-auto px-6 py-4 flex items-center justify-between'
+          >
+            <a href='#'><img src='/logo.svg' alt='CV Mold Testing' /></a>
+            <nav class='flex items-center gap-x-8'>
+              <a
+                href='#steps'
+                class='text-sm text-gray-600 hover:text-[#2C2F47] transition-colors'
+                >How It Works</a
+              >
+              <a
+                href='#plans'
+                class='text-sm text-gray-600 hover:text-[#2C2F47] transition-colors'
+                >Pricing</a
+              >
+              <a
+                href='#contact'
+                class='text-sm text-gray-600 hover:text-[#2C2F47] transition-colors'
+                >Contact</a
+              >
+              <a
+                href='#contact'
+                class='rounded-lg bg-[#2C2F47] text-white text-sm py-2.5 px-5'
+                >Schedule Your Test</a
+              >
+            </nav>
+          </div>
         </header>
         <main class='mt-20 flex flex-col gap-y-40 px-6'>
           <section
@@ -54,18 +81,16 @@ import {
               class='flex flex-col gap-y-5 h-full justify-center items-start col-span-6'
             >
               <h1 class='text-7xl font-semibold text-pretty'>
-                Lorem ipsum dolor sit amet
+                We detect and test mold in your home.
               </h1>
               <p class='text-pretty'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. In quas
-                ut iste natus vitae, repellendus autem beatae aperiam
-                perferendis at hic voluptatem nihil repudiandae quia maxime
-                laudantium, consequatur totam. Iure adipisci veritatis,
-                voluptate exercitationem ut sed totam natus inventore commodi?
+                Professional mold inspection services for homeowners.
+                Lab-certified testing, detailed reports, and expert guidance on
+                next steps.
               </p>
               <button
                 class='rounded-lg bg-[#2C2F47] inline-flex text-white py-3 px-6'
-                >Ad lorem ipsum</button
+                >Schedule Your Test</button
               >
             </div>
             <div class='col-start-8 col-span-5'>
@@ -83,12 +108,18 @@ import {
             <h2 class='text-5xl font-semibold col-span-5 text-pretty self-end'>
               Mold: A Silent Enemy in Your Home
             </h2>
-            <p class='col-span-6 col-start-7 self-end text-pretty'>
-              Mold can grow anywhere there's moisture in your home without
-              youeven noticing. Behind walls, under carpets, in the bathroom
-              orbasement. As it grows, it releases spores that you and your
-              family breathe every day
-            </p>
+            <div class='col-span-6 col-start-7 self-end flex flex-col gap-y-4'>
+              <p class='text-pretty'>
+                Mold can grow anywhere there's moisture in your home without you
+                even noticing. Behind walls, under carpets, in the bathroom or
+                basement. As it grows, it releases spores that you and your
+                family breathe every day.
+              </p>
+              <p class='text-pretty'>
+                The problem? You can't always see it. And by the time you notice
+                the signs, it may have already spread.
+              </p>
+            </div>
             <div class='col-span-12 flex gap-x-5'>
               <div
                 class='bg-white p-6 flex flex-col justify-between rounded-lg flex-1 gap-y-16 shadow'
@@ -150,33 +181,73 @@ import {
               Professional Mold Testing in 4 Simple Steps
             </h2>
             <div class='grid grid-cols-12 gap-x-6 gap-y-6'>
-              <div class='col-span-3'>
+              <div class='col-span-3 flex flex-col gap-y-4'>
                 <img
                   class='w-full h-auto rounded-lg'
                   src='https://images.unsplash.com/photo-1583847268964-b28dc8f51f92'
-                  alt=''
+                  alt='Book your test'
                 />
+                <span
+                  class='text-sm font-semibold uppercase tracking-widest text-[#2C2F47]'
+                  >Step 1</span
+                >
+                <h3 class='text-xl font-semibold'>Book Your Test</h3>
+                <p class='text-sm text-pretty'>
+                  Contact us to schedule a visit. We'll find a time that works
+                  for you.
+                </p>
               </div>
-              <div class='col-span-3'>
+              <div class='col-span-3 flex flex-col gap-y-4'>
                 <img
                   class='w-full h-auto rounded-lg'
                   src='https://images.unsplash.com/photo-1583847268964-b28dc8f51f92'
-                  alt=''
+                  alt='Professional inspection'
                 />
+                <span
+                  class='text-sm font-semibold uppercase tracking-widest text-[#2C2F47]'
+                  >Step 2</span
+                >
+                <h3 class='text-xl font-semibold'>Professional Inspection</h3>
+                <p class='text-sm text-pretty'>
+                  Our certified team visits your home and collects air and
+                  surface samples from the areas you select.
+                </p>
               </div>
-              <div class='col-span-3'>
+              <div class='col-span-3 flex flex-col gap-y-4'>
                 <img
                   class='w-full h-auto rounded-lg'
                   src='https://images.unsplash.com/photo-1583847268964-b28dc8f51f92'
-                  alt=''
+                  alt='Lab analysis'
                 />
+                <span
+                  class='text-sm font-semibold uppercase tracking-widest text-[#2C2F47]'
+                  >Step 3</span
+                >
+                <h3 class='text-xl font-semibold'>Lab Analysis</h3>
+                <p class='text-sm text-pretty'>
+                  Samples are sent to a certified laboratory for detailed
+                  analysis. We identify the type of mold present and its
+                  concentration levels.
+                </p>
               </div>
-              <div class='col-span-3'>
+              <div class='col-span-3 flex flex-col gap-y-4'>
                 <img
                   class='w-full h-auto rounded-lg'
                   src='https://images.unsplash.com/photo-1583847268964-b28dc8f51f92'
-                  alt=''
+                  alt='Detailed report'
                 />
+                <span
+                  class='text-sm font-semibold uppercase tracking-widest text-[#2C2F47]'
+                  >Step 4</span
+                >
+                <h3 class='text-xl font-semibold'>
+                  Detailed Report & Next Steps
+                </h3>
+                <p class='text-sm text-pretty'>
+                  You receive a complete report with the results. If mold is
+                  found, we'll connect you with trusted professionals who can
+                  help you solve the problem.
+                </p>
               </div>
             </div>
           </section>
@@ -187,26 +258,41 @@ import {
             <ul
               class='grid grid-cols-12 col-start-2 col-span-10 gap-x-20 gap-y-3 text-2xl'
             >
-              <li class='col-span-4 col-start-3 flex items-center gap-2'>
-                <CircleCheck />Professional on-site visit
+              <li class='col-span-4 col-start-3 flex items-baseline gap-2'>
+                <CircleCheck
+                  size='24'
+                  class='shrink-0 translate-y-1'
+                />Professional on-site visit
               </li>
-              <li class='col-span-4 flex items-center gap-2'>
-                <CircleCheck />Detailed report with mold types
+              <li class='col-span-4 flex items-baseline gap-2'>
+                <CircleCheck size='24' class='shrink-0 translate-y-1' />Detailed
+                report with mold types
               </li>
-              <li class='col-span-4 col-start-3 flex items-center gap-2'>
-                <CircleCheck />Certified sample collection
+              <li class='col-span-4 col-start-3 flex items-baseline gap-2'>
+                <CircleCheck
+                  size='24'
+                  class='shrink-0 translate-y-1'
+                />Certified sample collection
               </li>
-              <li class='col-span-4 flex items-center gap-2'>
-                <CircleCheck />Expert guidance on recommended next steps
+              <li class='col-span-4 flex items-baseline gap-2'>
+                <CircleCheck size='24' class='shrink-0 translate-y-1' />Expert
+                guidance on recommended next steps
               </li>
-              <li class='col-span-4 col-start-3 flex items-center gap-2'>
-                <CircleCheck />Mandatory exterior test at no extra charge
+              <li class='col-span-4 col-start-3 flex items-baseline gap-2'>
+                <CircleCheck
+                  size='24'
+                  class='shrink-0 translate-y-1'
+                />Mandatory exterior test at no extra charge
               </li>
-              <li class='col-span-4 flex items-center gap-2'>
-                <CircleCheck />Connection with trusted remediation professionals
+              <li class='col-span-4 flex items-baseline gap-2'>
+                <CircleCheck
+                  size='24'
+                  class='shrink-0 translate-y-1'
+                />Connection with trusted remediation professionals
               </li>
-              <li class='col-span-4 col-start-3 flex items-center gap-2'>
-                <CircleCheck />Lab analysis by a certified laboratory
+              <li class='col-span-4 col-start-3 flex items-baseline gap-2'>
+                <CircleCheck size='24' class='shrink-0 translate-y-1' />Lab
+                analysis by a certified laboratory
               </li>
             </ul>
           </section>
@@ -218,8 +304,9 @@ import {
               <h2 class='w-full text-5xl font-semibold mb-10 text-pretty'>
                 Choose the Right Test for Your Home
               </h2>
-              <p>
-                At CV Mold Testing, we make the process simple and transparent.
+              <p class='mb-4'>
+                Each home is different. Select the package that fits your needs
+                based on the number of areas you want to test.
               </p>
               <small
                 >* Each area typically requires 2 test samples for accurate
@@ -227,109 +314,78 @@ import {
                 help you decide</small
               >
             </div>
-            <div class='col-span-7 col-start-6 flex flex-col gap-y-5'>
+            <div class='col-span-6 col-start-7 flex flex-col gap-y-5'>
               <div
-                class='card bg-white border p-8 flex gap-x-10 rounded-2xl border-[#E7E3E4]'
+                class='card bg-white border p-8 flex justify-between gap-y-3 rounded-2xl border-[#E7E3E4]'
               >
-                <div class='flex flex-col w-1/3 gap-y-6'>
-                  <small class='uppercase tracking-[0.2rem]'>Premium Plan</small
-                  >
-                  <span class='text-5xl font-bold'>$200</span>
+                <div class='flex flex-col gap-y-4 w-2/3'>
+                  <small class='uppercase tracking-[0.2rem]'>Basic</small>
+                  <p class='text-balance text-gray-500 leading-5 text-lg'>
+                    Perfect for smaller homes or specific concerns in a few
+                    rooms.
+                  </p>
+                  <p class='flex items-center text-sm gap-x-1'>
+                    <LayoutGrid size='14' /> 4 areas tested + free exterior test
+                  </p>
                 </div>
-                <div class='flex flex-col grow gap-y-6'>
-                  <small class='text-sm'>Features included</small>
-                  <ul class='flex flex-wrap gap-y-3'>
-                    <li class='w-1/2 flex gap-x-3'>
-                      <CircleCheck /> Ad lorem ipsum dolor
-                    </li>
-                    <li class='w-1/2 flex gap-x-3'>
-                      <CircleCheck /> Ad lorem ipsum dolor
-                    </li>
-                    <li class='w-1/2 flex gap-x-3'>
-                      <CircleCheck /> Ad lorem ipsum dolor
-                    </li>
-                    <li class='w-1/2 flex gap-x-3'>
-                      <CircleCheck /> Ad lorem ipsum dolor
-                    </li>
-                  </ul>
+                <div class='flex flex-col justify-center items-center w-1/3'>
+                  <span class='text-6xl font-bold'>$299</span>
                 </div>
               </div>
               <div
-                class='card bg-white border p-8 flex gap-x-10 rounded-2xl border-[#E7E3E4]'
+                class='card bg-white border p-8 flex justify-between gap-y-3 rounded-2xl border-[#E7E3E4]'
               >
-                <div class='flex flex-col w-1/3 gap-y-6'>
-                  <small class='uppercase tracking-[0.2rem]'>Premium Plan</small
-                  >
-                  <span class='text-5xl font-bold'>$200</span>
+                <div class='flex flex-col gap-y-4 w-2/3'>
+                  <small class='uppercase tracking-[0.2rem]'>Standard</small>
+                  <p class='text-balance text-gray-500 leading-5 text-lg'>
+                    Ideal for medium-sized homes or when you want broader
+                    coverage.
+                  </p>
+                  <p class='flex items-center text-sm gap-x-1'>
+                    <LayoutGrid size='14' /> 6 areas tested + free exterior test
+                  </p>
                 </div>
-                <div class='flex flex-col grow gap-y-6'>
-                  <small class='text-sm'>Features included</small>
-                  <ul class='flex flex-wrap gap-y-3'>
-                    <li class='w-1/2 flex gap-x-3'>
-                      <CircleCheck /> Ad lorem ipsum dolor
-                    </li>
-                    <li class='w-1/2 flex gap-x-3'>
-                      <CircleCheck /> Ad lorem ipsum dolor
-                    </li>
-                    <li class='w-1/2 flex gap-x-3'>
-                      <CircleCheck /> Ad lorem ipsum dolor
-                    </li>
-                    <li class='w-1/2 flex gap-x-3'>
-                      <CircleCheck /> Ad lorem ipsum dolor
-                    </li>
-                  </ul>
+                <div class='flex flex-col justify-center items-center w-1/3'>
+                  <span class='text-6xl font-bold'>$449</span>
                 </div>
               </div>
               <div
-                class='card bg-white border p-8 flex gap-x-10 rounded-2xl border-[#E7E3E4]'
+                class='card bg-white border-2 p-8 flex justify-between gap-y-3 rounded-2xl border-[#2C2F47]'
               >
-                <div class='flex flex-col w-1/3 gap-y-6'>
-                  <small class='uppercase tracking-[0.2rem]'>Premium Plan</small
-                  >
-                  <span class='text-5xl font-bold'>$200</span>
+                <div class='flex flex-col gap-y-4 w-2/3'>
+                  <div class='flex items-center gap-x-2'>
+                    <small class='uppercase tracking-[0.2rem]'>Complete</small>
+                    <span
+                      class='text-xs font-semibold bg-[#2C2F47] rounded px-2 py-0.5'
+                      style='color: #fff'>Best Value</span
+                    >
+                  </div>
+                  <p class='text-balance text-gray-500 leading-5 text-lg'>
+                    Comprehensive testing for larger homes or full peace of
+                    mind.
+                  </p>
+                  <p class='flex items-center text-sm gap-x-1'>
+                    <LayoutGrid size='14' /> 8 areas tested + free exterior test
+                  </p>
                 </div>
-                <div class='flex flex-col grow gap-y-6'>
-                  <small class='text-sm'>Features included</small>
-                  <ul class='flex flex-wrap gap-y-3'>
-                    <li class='w-1/2 flex gap-x-3'>
-                      <CircleCheck /> Ad lorem ipsum dolor
-                    </li>
-                    <li class='w-1/2 flex gap-x-3'>
-                      <CircleCheck /> Ad lorem ipsum dolor
-                    </li>
-                    <li class='w-1/2 flex gap-x-3'>
-                      <CircleCheck /> Ad lorem ipsum dolor
-                    </li>
-                    <li class='w-1/2 flex gap-x-3'>
-                      <CircleCheck /> Ad lorem ipsum dolor
-                    </li>
-                  </ul>
+                <div class='flex flex-col justify-center items-center w-1/3'>
+                  <span class='text-6xl font-bold'>$549</span>
                 </div>
               </div>
               <div
-                class='card bg-white border p-8 flex gap-x-10 rounded-2xl border-[#E7E3E4]'
+                class='card bg-white border p-8 flex justify-between gap-y-3 rounded-2xl border-[#E7E3E4]'
               >
-                <div class='flex flex-col w-1/3 gap-y-6'>
-                  <small class='uppercase tracking-[0.2rem]'>Premium Plan</small
-                  >
-                  <span class='text-5xl font-bold'>$200</span>
+                <div class='flex flex-col gap-y-4 w-2/3'>
+                  <small class='uppercase tracking-[0.2rem]'>Custom</small>
+                  <p class='text-balance text-gray-500 leading-5 text-lg'>
+                    More areas, a commercial space, or not sure where to start?
+                    We'll put together a quote for you.
+                  </p>
+                  <p class='flex items-center text-sm gap-x-1'>
+                    <LayoutGrid size='14' /> Tailored to your space
+                  </p>
                 </div>
-                <div class='flex flex-col grow gap-y-6'>
-                  <small class='text-sm'>Features included</small>
-                  <ul class='flex flex-wrap gap-y-3'>
-                    <li class='w-1/2 flex gap-x-3'>
-                      <CircleCheck /> Ad lorem ipsum dolor
-                    </li>
-                    <li class='w-1/2 flex gap-x-3'>
-                      <CircleCheck /> Ad lorem ipsum dolor
-                    </li>
-                    <li class='w-1/2 flex gap-x-3'>
-                      <CircleCheck /> Ad lorem ipsum dolor
-                    </li>
-                    <li class='w-1/2 flex gap-x-3'>
-                      <CircleCheck /> Ad lorem ipsum dolor
-                    </li>
-                  </ul>
+                <div class='flex flex-col justify-center items-center w-1/3'>
                 </div>
               </div>
             </div>
@@ -348,6 +404,7 @@ import {
             </p>
           </section>
           <section
+            id='contact'
             class='w-full max-w-500 mx-auto grid grid-cols-12 gap-x-10 gap-y-10'
           >
             <div class='col-span-4'>
@@ -399,51 +456,51 @@ import {
                   <div class='grid grid-cols-4 gap-3'>
                     <label
                       class='relative block bg-white cursor-pointer rounded-lg border border-[#E7E3E4] p-4 leading-5 pb-6 transition-all duration-200 has-checked:border-[#2C2F47] has-checked:shadow-[0_0_0_2px_#2C2F47] text-3xl'
-                      for='plan-standard-4'
+                      for='plan-basic'
                     >
                       <input
                         type='radio'
                         class='absolute top-4 right-4 h-4 w-4 accent-[#2C2F47]'
                         name='plan'
-                        id='plan-standard-4'
-                        value='standard-4'
+                        id='plan-basic'
+                        value='basic'
                       />
                       <span class='uppercase text-sm block mb-4 tracking-widest'
-                        >Standard</span
+                        >Basic</span
                       >
                       4 areas
                     </label>
                     <label
                       class='relative block bg-white cursor-pointer rounded-lg border border-[#E7E3E4] p-4 leading-5 pb-6 transition-all duration-200 has-checked:border-[#2C2F47] has-checked:shadow-[0_0_0_2px_#2C2F47] text-3xl'
-                      for='plan-standard-6'
+                      for='plan-standard'
                     >
                       <input
                         type='radio'
                         class='absolute top-3 right-3 h-4 w-4 accent-[#2C2F47]'
                         name='plan'
-                        id='plan-standard-6'
-                        value='standard-6'
+                        id='plan-standard'
+                        value='standard'
                       />
                       <span class='uppercase text-sm block mb-4 tracking-widest'
                         >Standard</span
                       >
-                      4 areas
+                      6 areas
                     </label>
                     <label
                       class='relative block bg-white cursor-pointer rounded-lg border border-[#E7E3E4] p-4 leading-5 pb-6 transition-all duration-200 has-checked:border-[#2C2F47] has-checked:shadow-[0_0_0_2px_#2C2F47] text-3xl'
-                      for='plan-standard-8'
+                      for='plan-complete'
                     >
                       <input
                         type='radio'
                         class='absolute top-3 right-3 h-4 w-4 accent-[#2C2F47]'
                         name='plan'
-                        id='plan-standard-8'
-                        value='standard-8'
+                        id='plan-complete'
+                        value='complete'
                       />
                       <span class='uppercase text-sm block mb-4 tracking-widest'
-                        >Standard</span
+                        >Complete</span
                       >
-                      4 areas
+                      8 areas
                     </label>
                     <label
                       class='relative block bg-white cursor-pointer rounded-lg border border-[#E7E3E4] p-4 leading-5 pb-6 transition-all duration-200 has-checked:border-[#2C2F47] has-checked:shadow-[0_0_0_2px_#2C2F47] text-3xl'
@@ -457,9 +514,9 @@ import {
                         value='custom'
                       />
                       <span class='uppercase text-sm block mb-4 tracking-widest'
-                        >Standard</span
+                        >Custom</span
                       >
-                      4 areas
+                      X areas
                     </label>
                   </div>
                 </div>
@@ -474,7 +531,7 @@ import {
                 <div class='col-span-6'>
                   <button
                     class='rounded-lg bg-[#2C2F47] inline-flex text-white py-3 px-6'
-                    >Ad lorem ipsum</button
+                    >Request My Test</button
                   >
                 </div>
               </form>
@@ -517,7 +574,6 @@ import {
       window.addEventListener('load', () => {
         ScrollTrigger.refresh();
       });
-
 
       const texts = gsap.utils.toArray<HTMLElement>('.why-test-text');
       const greenOverlay = document.getElementById('green-overlay')!;
