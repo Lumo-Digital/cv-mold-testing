@@ -43,7 +43,7 @@ jobs:
         id: deploy-prod
         run: |
           echo "🚀 Deploying to production..."
-          DEPLOY_OUTPUT=$(npx netlify-cli deploy --prod --dir=dist --message "Deploy from GitHub Actions" --timeout=600 --json)
+          DEPLOY_OUTPUT=$(npx netlify deploy --prod --dir=dist --message "Deploy from GitHub Actions" --timeout=600 --json)
           DEPLOY_URL=$(echo $DEPLOY_OUTPUT | jq -r '.deploy_url // .url')
           echo "deploy-url=$DEPLOY_URL" >> $GITHUB_OUTPUT
           echo "✅ Production deployed to: $DEPLOY_URL"
@@ -57,7 +57,7 @@ jobs:
         id: deploy-staging
         run: |
           echo "🔄 Deploying to staging..."
-          DEPLOY_OUTPUT=$(npx netlify-cli deploy --prod --dir=dist --message "Staging deploy from ${{ github.sha }}" --json)
+          DEPLOY_OUTPUT=$(npx netlify deploy --prod --dir=dist --message "Staging deploy from ${{ github.sha }}" --json)
           DEPLOY_URL=$(echo $DEPLOY_OUTPUT | jq -r '.deploy_url // .url')
           echo "deploy-url=$DEPLOY_URL" >> $GITHUB_OUTPUT
           echo "✅ Staging deployed to: $DEPLOY_URL"
@@ -71,7 +71,7 @@ jobs:
         id: deploy-preview
         run: |
           echo "👀 Deploying preview for PR #${{ github.event.number }}..."
-          DEPLOY_OUTPUT=$(npx netlify-cli deploy --dir=dist --message "Preview from PR #${{ github.event.number }}" --json)
+          DEPLOY_OUTPUT=$(npx netlify deploy --dir=dist --message "Preview from PR #${{ github.event.number }}" --json)
           DEPLOY_URL=$(echo $DEPLOY_OUTPUT | jq -r '.deploy_url')
           echo "deploy-url=$DEPLOY_URL" >> $GITHUB_OUTPUT
           echo "✅ Preview deployed to: $DEPLOY_URL"
