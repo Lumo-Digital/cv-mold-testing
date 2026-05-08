@@ -10,6 +10,8 @@ import {
   Stethoscope,
   LayoutGrid,
   Gift,
+  Menu,
+  X,
 } from 'lucide-astro';
 ---
 
@@ -44,10 +46,10 @@ import {
     </div>
     <div id='smooth-wrapper'>
       <div id='smooth-content'>
-        <header class='bg-white rounded-lg mx-6 shadow mt-6'>
+        <header class='bg-white rounded-lg mx-6 shadow mt-6 relative'>
           <div class='px-6 py-4 flex items-center justify-between'>
             <a href='#'><img src='/logo.svg' alt='CV Mold Testing' /></a>
-            <nav class='flex items-center gap-x-8'>
+            <nav class='max-[768px]:hidden flex items-center gap-x-8'>
               <a
                 href='#steps'
                 class='text-sm text-gray-600 hover:text-[#2C2F47] transition-colors'
@@ -69,14 +71,74 @@ import {
                 >Schedule Your Test</a
               >
             </nav>
+            <button
+              id='hamburger'
+              class='hidden max-[768px]:flex items-center justify-center p-2 rounded-lg hover:bg-gray-100 transition-colors'
+              aria-label='Open menu'
+            >
+              <span id='icon-menu'><Menu size='22' color='#2C2F47' /></span>
+              <span id='icon-close' class='hidden'
+                ><X size='22' color='#2C2F47' /></span
+              >
+            </button>
+          </div>
+          <div
+            id='mobile-menu'
+            class='hidden flex-col absolute top-full left-0 right-0 bg-white rounded-b-lg shadow-lg px-6 py-5 gap-y-4 z-50'
+          >
+            <a
+              href='#steps'
+              class='text-sm text-gray-600 hover:text-[#2C2F47] transition-colors'
+              >How It Works</a
+            >
+            <a
+              href='#plans'
+              class='text-sm text-gray-600 hover:text-[#2C2F47] transition-colors'
+              >Pricing</a
+            >
+            <a
+              href='#contact'
+              class='text-sm text-gray-600 hover:text-[#2C2F47] transition-colors'
+              >Contact</a
+            >
+            <a
+              href='#contact'
+              class='rounded-lg bg-[#2C2F47] text-white text-sm py-2.5 px-5 text-center'
+              >Schedule Your Test</a
+            >
           </div>
         </header>
-        <main class='mt-20 flex flex-col gap-y-40 px-6'>
+        <script>
+          const hamburger = document.getElementById('hamburger');
+          const mobileMenu = document.getElementById('mobile-menu');
+          const iconMenu = document.getElementById('icon-menu');
+          const iconClose = document.getElementById('icon-close');
+
+          hamburger?.addEventListener('click', () => {
+            const isOpen = !mobileMenu?.classList.contains('hidden');
+            mobileMenu?.classList.toggle('hidden', isOpen);
+            mobileMenu?.classList.toggle('flex', !isOpen);
+            iconMenu?.classList.toggle('hidden', !isOpen);
+            iconClose?.classList.toggle('hidden', isOpen);
+          });
+
+          mobileMenu?.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => {
+              mobileMenu.classList.add('hidden');
+              mobileMenu.classList.remove('flex');
+              iconMenu?.classList.remove('hidden');
+              iconClose?.classList.add('hidden');
+            });
+          });
+        </script>
+        <main class='mt-20 max-[768px]:mt-10 flex flex-col gap-y-40 px-6'>
           <section
             id='hero'
-            class='w-full max-w-400 mx-auto grid grid-cols-12 gap-x-10 gap-y-8'
+            class='w-full max-w-400 mx-auto grid grid-cols-12 gap-x-10 max-[800px]:gap-x-0 gap-y-8'
           >
-            <div class='col-start-8 col-span-5 h-full max-[800px]:col-start-1 max-[800px]:col-span-12 max-[800px]:row-start-1'>
+            <div
+              class='col-start-8 col-span-5 h-full max-[800px]:col-start-1 max-[800px]:col-span-12 max-[800px]:row-start-1 max-[768px]:h-80'
+            >
               <img
                 class='rounded-lg w-full h-full object-cover'
                 src='https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
@@ -86,7 +148,9 @@ import {
             <div
               class='flex flex-col gap-y-5 h-full justify-center items-start col-start-1 col-span-6 row-start-1 max-[800px]:col-span-12 max-[800px]:row-start-2'
             >
-              <h1 class='text-7xl font-semibold text-pretty'>
+              <h1
+                class='text-7xl max-[768px]:text-5xl font-semibold text-pretty'
+              >
                 We detect and test mold in your home.
               </h1>
               <p class='text-pretty text-xl leading-6'>
@@ -105,7 +169,7 @@ import {
             class='w-full max-w-400 mx-auto grid grid-cols-12 gap-x-10 max-sm:gap-x-0 gap-y-10'
           >
             <h2
-              class='text-5xl max-lg:text-4xl font-semibold col-span-6 max-sm:col-span-12 text-pretty self-end'
+              class='text-5xl max-lg:text-4xl font-semibold col-span-6 max-md:col-span-12 text-pretty self-end'
             >
               Mold: A Silent Enemy in Your Home
             </h2>
@@ -199,8 +263,11 @@ import {
                     Book Your Test
                   </h3>
                   <p class='text-white text-sm leading-5 opacity-80'>
-                    Contact us to schedule a visit. We'll find a time that works
-                    for you.
+                    Contact us to schedule a visit. We'll coordinate a time that
+                    fits your schedule — weekdays or weekends. Our team is
+                    flexible and will guide you through every detail before the
+                    appointment so you know exactly what to expect on inspection
+                    day.
                   </p>
                 </div>
               </div>
@@ -226,7 +293,9 @@ import {
                   </h3>
                   <p class='text-white text-sm leading-5 opacity-80'>
                     Our certified team visits your home and collects air and
-                    surface samples from the areas you select.
+                    surface samples from the areas you select. We also perform a
+                    comprehensive moisture mapping to identify hidden sources of
+                    moisture that could contribute to mold growth.
                   </p>
                 </div>
               </div>
@@ -253,7 +322,9 @@ import {
                   <p class='text-white text-sm leading-5 opacity-80'>
                     Samples are sent to a certified laboratory for detailed
                     analysis. We identify the type of mold present and its
-                    concentration levels.
+                    concentration levels. Results are typically available within
+                    3 to 5 business days, giving you accurate data to make
+                    informed decisions about your home.
                   </p>
                 </div>
               </div>
@@ -278,9 +349,11 @@ import {
                     Detailed Report & Next Steps
                   </h3>
                   <p class='text-white text-sm leading-5 opacity-80'>
-                    You receive a complete report with the results. If mold is
-                    found, we'll connect you with trusted professionals who can
-                    help you solve the problem.
+                    You receive a complete report with findings for each area
+                    tested, including mold type and concentration levels. If
+                    mold is found, we'll connect you with trusted remediation
+                    professionals who can help you solve the problem safely and
+                    effectively.
                   </p>
                 </div>
               </div>
@@ -381,7 +454,7 @@ import {
                 </p>
                 <div class='flex flex-col text-sm gap-y-1'>
                   <p class='flex items-center gap-x-1'>
-                    <LayoutGrid size='14' class='shrink-0' />4 areas tested
+                    <LayoutGrid size='14' class='shrink-0' />3 areas tested
                   </p>
                   <p class='flex items-center gap-x-1'>
                     <Gift size='14' class='shrink-0' />Free exterior test
@@ -467,9 +540,9 @@ import {
           </section>
           <section
             id='contact'
-            class='w-full max-w-400 mx-auto grid grid-cols-12 gap-x-10 gap-y-10'
+            class='w-full max-w-400 mx-auto grid grid-cols-12 gap-x-10 max-[720px]:gap-x-0 gap-y-10'
           >
-            <div class='col-span-4'>
+            <div class='col-span-4 max-lg:col-span-12'>
               <h2
                 class='w-full text-5xl max-lg:text-4xl font-semibold mb-10 text-pretty'
               >
@@ -485,30 +558,40 @@ import {
                 <li>info@cvmoldtesting.com</li>
               </ul>
             </div>
-            <div class='col-span-7 col-start-6 flex flex-col gap-y-5'>
+            <div
+              class='col-span-7 col-start-6 max-lg:col-span-12 max-lg:col-start-1 flex flex-col gap-y-5'
+            >
               <form action='' class='grid grid-cols-6 gap-x-5'>
-                <div class='col-span-3 flex flex-col mb-4'>
+                <div
+                  class='col-span-6 min-[720px]:col-span-3 flex flex-col mb-4'
+                >
                   <label for='' class='mb-2 text-sm'>Name</label>
                   <input
                     type='text'
                     class='w-full bg-white rounded-lg border border-[#E7E3E4] p-3 outline-none focus:ring-2 focus:ring-[#2C2F47] transition-all duration-200'
                   />
                 </div>
-                <div class='col-span-3 flex flex-col mb-4'>
+                <div
+                  class='col-span-6 min-[720px]:col-span-3 flex flex-col mb-4'
+                >
                   <label for='' class='mb-2 text-sm'>Email</label>
                   <input
                     type='email'
                     class='w-full bg-white rounded-lg border border-[#E7E3E4] p-3 outline-none focus:ring-2 focus:ring-[#2C2F47] transition-all duration-200'
                   />
                 </div>
-                <div class='col-span-3 flex flex-col mb-4'>
+                <div
+                  class='col-span-6 min-[720px]:col-span-3 flex flex-col mb-4'
+                >
                   <label for='' class='mb-2 text-sm'>Phone</label>
                   <input
                     type='text'
                     class='w-full bg-white rounded-lg border border-[#E7E3E4] p-3 outline-none focus:ring-2 focus:ring-[#2C2F47] transition-all duration-200'
                   />
                 </div>
-                <div class='col-span-3 flex flex-col mb-4'>
+                <div
+                  class='col-span-6 min-[720px]:col-span-3 flex flex-col mb-4'
+                >
                   <label for='' class='mb-2 text-sm'>Zip Code</label>
                   <input
                     type='email'
@@ -517,9 +600,11 @@ import {
                 </div>
                 <div class='col-span-6 flex flex-col mb-4'>
                   <label class='mb-2 text-sm'>Choose your plan</label>
-                  <div class='grid grid-cols-4 gap-3'>
+                  <div
+                    class='grid grid-cols-1 min-[720px]:grid-cols-4 lg:grid-cols-2 min-[1440px]:grid-cols-4 gap-3'
+                  >
                     <label
-                      class='relative block bg-white cursor-pointer rounded-lg border border-[#E7E3E4] p-4 leading-5 transition-all duration-200 has-checked:border-[#2C2F47] has-checked:shadow-[0_0_0_2px_#2C2F47] text-xl'
+                      class='relative block bg-white cursor-pointer rounded-lg border border-[#E7E3E4] p-4 leading-5 transition-all duration-200 has-checked:border-[#2C2F47] has-checked:shadow-[0_0_0_2px_#2C2F47] text-xl lg:text-lg min-[1440px]:text-xl'
                       for='plan-basic'
                     >
                       <input
@@ -529,13 +614,14 @@ import {
                         id='plan-basic'
                         value='basic'
                       />
-                      <span class='uppercase text-sm block mb-4 tracking-widest'
+                      <span
+                        class='uppercase text-[13px] block mb-4 tracking-widest'
                         >Basic</span
                       >
                       4 areas
                     </label>
                     <label
-                      class='relative block bg-white cursor-pointer rounded-lg border border-[#E7E3E4] p-4 leading-5 transition-all duration-200 has-checked:border-[#2C2F47] has-checked:shadow-[0_0_0_2px_#2C2F47] text-xl'
+                      class='relative block bg-white cursor-pointer rounded-lg border border-[#E7E3E4] p-4 leading-5 transition-all duration-200 has-checked:border-[#2C2F47] has-checked:shadow-[0_0_0_2px_#2C2F47] text-xl lg:text-lg min-[1440px]:text-xl'
                       for='plan-standard'
                     >
                       <input
@@ -545,13 +631,14 @@ import {
                         id='plan-standard'
                         value='standard'
                       />
-                      <span class='uppercase text-sm block mb-4 tracking-widest'
+                      <span
+                        class='uppercase text-[13px] block mb-4 tracking-widest'
                         >Standard</span
                       >
                       6 areas
                     </label>
                     <label
-                      class='relative block bg-white cursor-pointer rounded-lg border border-[#E7E3E4] p-4 leading-5 transition-all duration-200 has-checked:border-[#2C2F47] has-checked:shadow-[0_0_0_2px_#2C2F47] text-xl'
+                      class='relative block bg-white cursor-pointer rounded-lg border border-[#E7E3E4] p-4 leading-5 transition-all duration-200 has-checked:border-[#2C2F47] has-checked:shadow-[0_0_0_2px_#2C2F47] text-xl lg:text-lg min-[1440px]:text-xl'
                       for='plan-complete'
                     >
                       <input
@@ -561,13 +648,14 @@ import {
                         id='plan-complete'
                         value='complete'
                       />
-                      <span class='uppercase text-sm block mb-4 tracking-widest'
+                      <span
+                        class='uppercase text-[13px] block mb-4 tracking-widest'
                         >Complete</span
                       >
                       8 areas
                     </label>
                     <label
-                      class='relative block bg-white cursor-pointer rounded-lg border border-[#E7E3E4] p-4 leading-5 transition-all duration-200 has-checked:border-[#2C2F47] has-checked:shadow-[0_0_0_2px_#2C2F47] text-xl'
+                      class='relative block bg-white cursor-pointer rounded-lg border border-[#E7E3E4] p-4 leading-5 transition-all duration-200 has-checked:border-[#2C2F47] has-checked:shadow-[0_0_0_2px_#2C2F47] text-xl lg:text-lg min-[1440px]:text-xl'
                       for='plan-custom'
                     >
                       <input
@@ -577,7 +665,8 @@ import {
                         id='plan-custom'
                         value='custom'
                       />
-                      <span class='uppercase text-sm block mb-4 tracking-widest'
+                      <span
+                        class='uppercase text-[13px] block mb-4 tracking-widest'
                         >Custom</span
                       >
                       X areas
@@ -606,16 +695,36 @@ import {
           class='bg-white w-full mt-25 p-5 pb-11 border-t border-[#E7E3E4]'
         >
           <div
-            class='max-w-400 mx-auto flex justify-between text-sm items-center'
+            class='max-w-400 mx-auto grid grid-cols-3 max-[720px]:grid-cols-1 max-[720px]:gap-y-6 text-sm items-start'
           >
-            <p>© 2026 CV Mold Testing LLC</p>
-            <ul class='flex gap-x-4'>
-              <li>Instagram</li>
-              <li>Whatsapp</li>
+            <p class='text-gray-600'>© 2026 CV Mold Testing LLC</p>
+            <ul class='flex flex-col justify-center gap-y-2 lg:flex-row lg:gap-x-4 lg:gap-y-0'>
+              <li>
+                <a
+                  href='#'
+                  class='text-gray-600 hover:text-[#2C2F47] transition-colors'
+                  >Instagram</a>
+              </li>
+              <li>
+                <a
+                  href='#'
+                  class='text-gray-600 hover:text-[#2C2F47] transition-colors'
+                  >WhatsApp</a>
+              </li>
             </ul>
-            <ul class='flex gap-x-6'>
-              <li><a href='#'>Privacy Policy</a></li>
-              <li><a href='#'>Cookie Policy</a></li>
+            <ul class='flex flex-col justify-end gap-y-2 lg:flex-row lg:gap-x-4 lg:gap-y-0'>
+              <li>
+                <a
+                  href='#'
+                  class='text-gray-600 hover:text-[#2C2F47] transition-colors'
+                  >Privacy Policy</a>
+              </li>
+              <li>
+                <a
+                  href='#'
+                  class='text-gray-600 hover:text-[#2C2F47] transition-colors'
+                  >Cookie Policy</a>
+              </li>
             </ul>
           </div>
         </footer>
@@ -628,7 +737,7 @@ import {
 
       gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-      ScrollSmoother.create({
+      const smoother = ScrollSmoother.create({
         wrapper: '#smooth-wrapper',
         content: '#smooth-content',
         smooth: 1.5,
@@ -637,6 +746,17 @@ import {
 
       window.addEventListener('load', () => {
         ScrollTrigger.refresh();
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href');
+          if (!href || href === '#') return;
+          const target = document.querySelector(href);
+          if (!target) return;
+          e.preventDefault();
+          smoother.scrollTo(target, true, 'top 80px');
+        });
       });
 
       const texts = gsap.utils.toArray<HTMLElement>('.why-test-text');
