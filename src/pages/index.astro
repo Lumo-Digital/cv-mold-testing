@@ -561,40 +561,49 @@ import {
             <div
               class='col-span-7 col-start-6 max-lg:col-span-12 max-lg:col-start-1 flex flex-col gap-y-5'
             >
-              <form action='' class='grid grid-cols-6 gap-x-5'>
+              <form name='contact' data-netlify='true' class='grid grid-cols-6 gap-x-5'>
+                <input type='hidden' name='form-name' value='contact' />
                 <div
                   class='col-span-6 min-[720px]:col-span-3 flex flex-col mb-4'
                 >
-                  <label for='' class='mb-2 text-sm'>Name</label>
+                  <label for='name' class='mb-2 text-sm'>Name</label>
                   <input
                     type='text'
+                    id='name'
+                    name='name'
                     class='w-full bg-white rounded-lg border border-[#E7E3E4] p-3 outline-none focus:ring-2 focus:ring-[#2C2F47] transition-all duration-200'
                   />
                 </div>
                 <div
                   class='col-span-6 min-[720px]:col-span-3 flex flex-col mb-4'
                 >
-                  <label for='' class='mb-2 text-sm'>Email</label>
+                  <label for='email' class='mb-2 text-sm'>Email</label>
                   <input
                     type='email'
+                    id='email'
+                    name='email'
                     class='w-full bg-white rounded-lg border border-[#E7E3E4] p-3 outline-none focus:ring-2 focus:ring-[#2C2F47] transition-all duration-200'
                   />
                 </div>
                 <div
                   class='col-span-6 min-[720px]:col-span-3 flex flex-col mb-4'
                 >
-                  <label for='' class='mb-2 text-sm'>Phone</label>
+                  <label for='phone' class='mb-2 text-sm'>Phone</label>
+                  <input
+                    type='tel'
+                    id='phone'
+                    name='phone'
+                    class='w-full bg-white rounded-lg border border-[#E7E3E4] p-3 outline-none focus:ring-2 focus:ring-[#2C2F47] transition-all duration-200'
+                  />
+                </div>
+                <div
+                  class='col-span-6 min-[720px]:col-span-3 flex flex-col mb-4'
+                >
+                  <label for='zip' class='mb-2 text-sm'>Zip Code</label>
                   <input
                     type='text'
-                    class='w-full bg-white rounded-lg border border-[#E7E3E4] p-3 outline-none focus:ring-2 focus:ring-[#2C2F47] transition-all duration-200'
-                  />
-                </div>
-                <div
-                  class='col-span-6 min-[720px]:col-span-3 flex flex-col mb-4'
-                >
-                  <label for='' class='mb-2 text-sm'>Zip Code</label>
-                  <input
-                    type='email'
+                    id='zip'
+                    name='zip'
                     class='w-full bg-white rounded-lg border border-[#E7E3E4] p-3 outline-none focus:ring-2 focus:ring-[#2C2F47] transition-all duration-200'
                   />
                 </div>
@@ -676,13 +685,14 @@ import {
                 <div class='col-span-6 flex flex-col mb-6'>
                   <label for='' class='mb-2 text-sm'>Additional comments</label>
                   <textarea
-                    name=''
-                    id=''
+                    name='message'
+                    id='message'
                     class='bg-white rounded-lg border border-[#E7E3E4] p-3 outline-none focus:ring-2 focus:ring-[#2C2F47] transition-all duration-200'
                   ></textarea>
                 </div>
                 <div class='col-span-6'>
                   <button
+                    type='submit'
                     class='rounded-lg bg-[#2C2F47] inline-flex text-white py-3 px-6'
                     >Request My Test</button
                   >
@@ -698,32 +708,40 @@ import {
             class='max-w-400 mx-auto grid grid-cols-3 max-[720px]:grid-cols-1 max-[720px]:gap-y-6 text-sm items-start'
           >
             <p class='text-gray-600'>© 2026 CV Mold Testing LLC</p>
-            <ul class='flex flex-col justify-center gap-y-2 lg:flex-row lg:gap-x-4 lg:gap-y-0'>
+            <ul
+              class='flex flex-col justify-center gap-y-2 lg:flex-row lg:gap-x-4 lg:gap-y-0'
+            >
               <li>
                 <a
                   href='#'
                   class='text-gray-600 hover:text-[#2C2F47] transition-colors'
-                  >Instagram</a>
+                  >Instagram</a
+                >
               </li>
               <li>
                 <a
                   href='#'
                   class='text-gray-600 hover:text-[#2C2F47] transition-colors'
-                  >WhatsApp</a>
+                  >WhatsApp</a
+                >
               </li>
             </ul>
-            <ul class='flex flex-col justify-end gap-y-2 lg:flex-row lg:gap-x-4 lg:gap-y-0'>
+            <ul
+              class='flex flex-col justify-end gap-y-2 lg:flex-row lg:gap-x-4 lg:gap-y-0'
+            >
               <li>
                 <a
                   href='#'
                   class='text-gray-600 hover:text-[#2C2F47] transition-colors'
-                  >Privacy Policy</a>
+                  >Privacy Policy</a
+                >
               </li>
               <li>
                 <a
                   href='#'
                   class='text-gray-600 hover:text-[#2C2F47] transition-colors'
-                  >Cookie Policy</a>
+                  >Cookie Policy</a
+                >
               </li>
             </ul>
           </div>
