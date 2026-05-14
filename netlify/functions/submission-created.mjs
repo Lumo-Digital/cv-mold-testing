@@ -2,8 +2,8 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const ADMIN_EMAILS = ['hernan.baravalle@gmail.com'];
-const FROM_EMAIL = 'noreply@notifications.cvmoldtesting.com';
+const ADMIN_EMAILS = ['hernan.baravalle@gmail.com', 'info@cvmoldtesting.com'];
+const FROM_EMAIL = 'CV Mold Testing <noreply@notifications.cvmoldtesting.com>';
 
 const PLAN_LABELS = {
   basic: 'Basic — 3 areas tested',
@@ -145,7 +145,7 @@ export const handler = async (event) => {
       from: FROM_EMAIL,
       to: email,
       bcc: ADMIN_EMAILS,
-      subject: 'We received your mold test request — CV Mold Testing',
+      subject: 'We received your mold test request!',
       html: buildConfirmationEmail(name, email, phone, zip, plan, message),
     });
 

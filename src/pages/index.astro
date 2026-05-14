@@ -1,5 +1,7 @@
 ---
 import Dither from '../components/Dither';
+import ToasterSetup from '../components/Toaster';
+import CookieConsent from '../components/CookieConsent.astro';
 import '../styles/global.css';
 import {
   CircleCheck,
@@ -23,10 +25,6 @@ import {
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>CV Mold Testing</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
-    />
   </head>
   <body>
     <div
@@ -558,7 +556,6 @@ import {
               </p>
               <ul>
                 <li>+1 305 397 4966</li>
-                <li>+1 305 397 4966</li>
                 <li>info@cvmoldtesting.com</li>
               </ul>
             </div>
@@ -726,7 +723,7 @@ import {
                 <div class="col-span-6">
                   <button
                     type="submit"
-                    class="rounded-lg bg-[#2C2F47] inline-flex text-white py-3 px-6"
+                    class="rounded-lg bg-[#2C2F47] inline-flex items-center gap-2 text-white py-3 px-6 cursor-pointer transition-colors duration-300"
                     >Request My Test</button
                   >
                 </div>
@@ -744,34 +741,20 @@ import {
             <ul
               class="flex flex-col justify-center gap-y-2 lg:flex-row lg:gap-x-4 lg:gap-y-0"
             >
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-600 hover:text-[#2C2F47] transition-colors"
-                  >Instagram</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="text-gray-600 hover:text-[#2C2F47] transition-colors"
-                  >WhatsApp</a
-                >
-              </li>
             </ul>
             <ul
               class="flex flex-col justify-end gap-y-2 lg:flex-row lg:gap-x-4 lg:gap-y-0"
             >
               <li>
                 <a
-                  href="#"
+                  href="/privacy-policy"
                   class="text-gray-600 hover:text-[#2C2F47] transition-colors"
                   >Privacy Policy</a
                 >
               </li>
               <li>
                 <a
-                  href="#"
+                  href="/cookie-policy"
                   class="text-gray-600 hover:text-[#2C2F47] transition-colors"
                   >Cookie Policy</a
                 >
@@ -832,7 +815,6 @@ import {
         .to(greenOverlay, { opacity: 0, duration: 0.4 }, 0.6)
         .to(adjacentSections, { opacity: 1, duration: 0.4 }, 0.6);
     </script>
-    <script is:inline src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         const form = document.getElementById('contact-form') as HTMLFormElement;
@@ -977,16 +959,37 @@ import {
               '.error-message:not(.hidden)'
             );
             firstError?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (window as any).toast?.error(
+              'Please fill in all required fields.',
+              { duration: 4000 }
+            );
             return;
           }
 
           const submitBtn = form.querySelector(
             'button[type="submit"]'
           ) as HTMLButtonElement;
-          if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending…';
+
+          const spinnerSVG = `<svg class="animate-spin" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>`;
+          const checkSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+          const xSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+
+          function resetBtn() {
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('bg-[#31a948]', 'bg-red-500');
+            submitBtn.classList.add('bg-[#2C2F47]');
+            submitBtn.innerHTML = 'Request My Test';
           }
+
+          submitBtn.disabled = true;
+          submitBtn.classList.remove(
+            'bg-[#2C2F47]',
+            'bg-[#31a948]',
+            'bg-red-500'
+          );
+          submitBtn.classList.add('bg-[#2C2F47]');
+          submitBtn.innerHTML = `${spinnerSVG} Sending…`;
 
           try {
             const formData = new FormData(form);
@@ -998,54 +1001,37 @@ import {
               ).toString(),
             });
 
-            // @ts-expect-error — Toastify loaded via CDN
-            Toastify({
-              text: "✓ Request sent! We'll be in touch within 24 hours.",
-              duration: 5000,
-              gravity: 'bottom',
-              position: 'center',
-              className: 'toast-success',
-            }).showToast();
+            submitBtn.classList.remove('bg-[#2C2F47]');
+            submitBtn.classList.add('bg-[#31a948]');
+            submitBtn.innerHTML = `${checkSVG} Sent!`;
+            setTimeout(resetBtn, 3000);
+
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (window as any).toast?.success(
+              "Request sent! We'll be in touch within 24 hours.",
+              { duration: 5000 }
+            );
 
             form.reset();
           } catch {
-            // @ts-expect-error — Toastify loaded via CDN
-            Toastify({
-              text: '✕ Connection error. Please try again.',
-              duration: 4000,
-              gravity: 'bottom',
-              position: 'center',
-              className: 'toast-error',
-            }).showToast();
-          } finally {
-            if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.textContent = 'Request My Test';
-            }
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('bg-[#2C2F47]');
+            submitBtn.classList.add('bg-red-500');
+            submitBtn.innerHTML = `${xSVG} Try again`;
+            setTimeout(resetBtn, 3000);
+
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (window as any).toast?.error(
+              'Connection error. Please try again.',
+              {
+                duration: 4000,
+              }
+            );
           }
         });
       });
     </script>
-    <style>
-      .toastify {
-        padding: 16px 20px;
-        border-radius: 10px;
-        font-family: sans-serif;
-        font-size: 14px;
-        font-weight: 500;
-        max-width: 380px;
-        box-shadow:
-          0 4px 12px rgba(0, 0, 0, 0.12),
-          0 2px 4px rgba(0, 0, 0, 0.08);
-      }
-      .toastify.toast-success {
-        background: #31a948 !important;
-        color: white !important;
-      }
-      .toastify.toast-error {
-        background: #ef4444 !important;
-        color: white !important;
-      }
-    </style>
+    <ToasterSetup client:load />
+    <CookieConsent />
   </body>
 </html>

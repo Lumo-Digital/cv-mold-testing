@@ -1,0 +1,125 @@
+---
+import 'vanilla-cookieconsent/dist/cookieconsent.css';
+---
+
+<script>
+  import * as CookieConsent from 'vanilla-cookieconsent';
+
+  CookieConsent.run({
+    guiOptions: {
+      consentModal: {
+        layout: 'bar',
+        position: 'bottom',
+        equalWeightButtons: false,
+      },
+      preferencesModal: {
+        layout: 'box',
+      },
+    },
+
+    categories: {
+      necessary: {
+        enabled: true,
+        readOnly: true,
+      },
+      analytics: {
+        enabled: false,
+        autoClear: {
+          cookies: [{ name: /^(_ga|_gid|_gat)/ }],
+        },
+      },
+      marketing: {
+        enabled: false,
+        autoClear: {
+          cookies: [{ name: /^(_fbp|_fbc)/ }],
+        },
+      },
+    },
+
+    language: {
+      default: 'en',
+      translations: {
+        en: {
+          consentModal: {
+            title: 'We use cookies',
+            description:
+              'We use cookies to improve your experience, analyze site traffic, and show relevant ads. You can choose which cookies to allow.',
+            acceptAllBtn: 'Accept all',
+            acceptNecessaryBtn: 'Reject all',
+            showPreferencesBtn: 'Manage preferences',
+            footer:
+              '<a href="/privacy-policy">Privacy Policy</a> · <a href="/cookie-policy">Cookie Policy</a>',
+          },
+          preferencesModal: {
+            title: 'Cookie preferences',
+            acceptAllBtn: 'Accept all',
+            acceptNecessaryBtn: 'Reject all',
+            savePreferencesBtn: 'Save preferences',
+            closeIconLabel: 'Close',
+            sections: [
+              {
+                title: 'Your privacy choices',
+                description:
+                  'You can choose which cookie categories to allow. Your preferences will be saved for this site.',
+              },
+              {
+                title: 'Strictly necessary',
+                description:
+                  'These cookies are required for the website to function and cannot be disabled.',
+                linkedCategory: 'necessary',
+              },
+              {
+                title: 'Analytics',
+                description:
+                  'These cookies help us understand how visitors interact with our site (Google Analytics, Google Tag Manager).',
+                linkedCategory: 'analytics',
+              },
+              {
+                title: 'Marketing',
+                description:
+                  'These cookies are used to deliver relevant ads and track campaign effectiveness (Google Ads, Meta Pixel).',
+                linkedCategory: 'marketing',
+              },
+              {
+                title: 'More information',
+                description:
+                  'For any questions about our cookie policy, please <a href="mailto:info@cvmoldtesting.com">contact us</a>.',
+              },
+            ],
+          },
+        },
+      },
+    },
+  });
+</script>
+
+<style is:global>
+  :root {
+    --cc-font-family: sans-serif;
+    --cc-bg: #ffffff;
+    --cc-primary-color: #2c2f47;
+    --cc-btn-primary-bg: #2c2f47;
+    --cc-btn-primary-color: #ffffff;
+    --cc-btn-primary-hover-bg: #1e2136;
+    --cc-btn-secondary-bg: #f1f5f9;
+    --cc-btn-secondary-color: #2c2f47;
+    --cc-btn-secondary-hover-bg: #e2e8f0;
+    --cc-toggle-on-bg: #31a948;
+    --cc-toggle-off-bg: #cbd5e1;
+    --cc-toggle-on-knob-bg: #ffffff;
+    --cc-separator-border-color: #e2e8f0;
+    --cc-modal-border-radius: 12px;
+    --cc-btn-border-radius: 8px;
+    --cc-footer-color: #64748b;
+    --cc-footer-link-color: #2c2f47;
+    --cc-modal-margin: 0;
+  }
+
+  #cc-main .cm--bar .cm__body {
+    padding: 14px 24px;
+  }
+
+  #cc-main .cm--bar .cm__btns {
+    padding: 14px 24px;
+  }
+</style>
