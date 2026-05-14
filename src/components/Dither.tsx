@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import type { ThreeEvent } from '@react-three/fiber/dist/declarations/src/core/events';
 import * as THREE from 'three';
@@ -308,6 +308,17 @@ function DitheredWaves({
   );
 }
 
+function FirstFrameReporter({ onReady }: { onReady: () => void }) {
+  const fired = useRef(false);
+  useFrame(() => {
+    if (!fired.current) {
+      fired.current = true;
+      onReady();
+    }
+  });
+  return null;
+}
+
 interface DitherProps {
   waveSpeed?: number;
   waveFrequency?: number;
@@ -331,24 +342,33 @@ export default function Dither({
   enableMouseInteraction = true,
   mouseRadius = 1,
 }: DitherProps) {
+  const [ready, setReady] = useState(false);
+
   return (
-    <Canvas
-      className="w-full h-full relative"
-      camera={{ position: [0, 0, 6] }}
-      dpr={1}
-      gl={{ antialias: false, preserveDrawingBuffer: false }}
-    >
-      <DitheredWaves
-        waveSpeed={waveSpeed}
-        waveFrequency={waveFrequency}
-        waveAmplitude={waveAmplitude}
-        waveColor={waveColor}
-        colorNum={colorNum}
-        pixelSize={pixelSize}
-        disableAnimation={disableAnimation}
-        enableMouseInteraction={enableMouseInteraction}
-        mouseRadius={mouseRadius}
+    <div className="relative w-full h-full">
+      <Canvas
+        className="w-full h-full"
+        camera={{ position: [0, 0, 6] }}
+        dpr={1}
+        gl={{ antialias: false, preserveDrawingBuffer: false }}
+      >
+        <DitheredWaves
+          waveSpeed={waveSpeed}
+          waveFrequency={waveFrequency}
+          waveAmplitude={waveAmplitude}
+          waveColor={waveColor}
+          colorNum={colorNum}
+          pixelSize={pixelSize}
+          disableAnimation={disableAnimation}
+          enableMouseInteraction={enableMouseInteraction}
+          mouseRadius={mouseRadius}
+        />
+        <FirstFrameReporter onReady={() => setReady(true)} />
+      </Canvas>
+      <div
+        className="absolute inset-0 bg-white pointer-events-none transition-opacity duration-1000"
+        style={{ opacity: ready ? 0 : 1 }}
       />
-    </Canvas>
+    </div>
   );
 }
