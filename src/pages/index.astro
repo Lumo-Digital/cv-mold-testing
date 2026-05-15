@@ -35,7 +35,7 @@ import {
     </div>
     <div class="w-full h-dvh fixed -z-50">
       <Dither
-        client:load
+        client:idle
         waveColor={[0.5, 1, 0.45]}
         disableAnimation={false}
         enableMouseInteraction
@@ -50,7 +50,14 @@ import {
       <div id="smooth-content">
         <header class="bg-white rounded-lg mx-6 shadow mt-6 relative">
           <div class="px-6 py-4 flex items-center justify-between">
-            <a href="#"><img src="/logo.svg" alt="CV Mold Testing" /></a>
+            <a href="#"
+              ><img
+                src="/logo.svg"
+                alt="CV Mold Testing"
+                width="156"
+                height="40"
+              /></a
+            >
             <nav class="max-[768px]:hidden flex items-center gap-x-8">
               <a
                 href="#steps"
@@ -144,7 +151,10 @@ import {
               <img
                 class="rounded-lg w-full h-full object-cover"
                 src="/hero.webp"
-                alt=""
+                alt="Professional mold inspection in a home"
+                width="1440"
+                height="768"
+                fetchpriority="high"
               />
             </div>
             <div
@@ -251,6 +261,9 @@ import {
                   class="absolute inset-0 w-full h-full object-cover"
                   src="/01_book_your_test.webp"
                   alt="Book your test"
+                  width="900"
+                  height="600"
+                  loading="lazy"
                 />
                 <div
                   class="absolute inset-0 bg-linear-to-t from-[#2C2F47] via-[#2C2F47]/60 to-transparent"
@@ -280,6 +293,9 @@ import {
                   class="absolute inset-0 w-full h-full object-cover"
                   src="/02_professional_inspection.webp"
                   alt="Professional inspection"
+                  width="900"
+                  height="503"
+                  loading="lazy"
                 />
                 <div
                   class="absolute inset-0 bg-linear-to-t from-[#2C2F47] via-[#2C2F47]/60 to-transparent"
@@ -308,6 +324,9 @@ import {
                   class="absolute inset-0 w-full h-full object-cover"
                   src="/03_lab_analysis.webp"
                   alt="Lab analysis"
+                  width="900"
+                  height="503"
+                  loading="lazy"
                 />
                 <div
                   class="absolute inset-0 bg-linear-to-t from-[#2C2F47] via-[#2C2F47]/60 to-transparent"
@@ -337,6 +356,9 @@ import {
                   class="absolute inset-0 w-full h-full object-cover"
                   src="/04_analysis_report.webp"
                   alt="Detailed report"
+                  width="900"
+                  height="503"
+                  loading="lazy"
                 />
                 <div
                   class="absolute inset-0 bg-linear-to-t from-[#2C2F47] via-[#2C2F47]/60 to-transparent"
