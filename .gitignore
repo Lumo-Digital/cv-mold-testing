@@ -25,3 +25,8 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+
+# Lighthouse
+
+localhost_*.report.html
+lighthouse*.json
