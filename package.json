@@ -10,13 +10,13 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@astrojs/react": "^4.4.2",
+    "@astrojs/react": "^7.1.1",
     "@react-three/fiber": "9.5.0",
     "@react-three/postprocessing": "^3.0.4",
-    "@tailwindcss/vite": "^4.2.1",
+    "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "astro": "^5.17.1",
+    "astro": "^7.4.2",
     "gsap": "^3.14.2",
     "lucide-astro": "^0.556.0",
     "postprocessing": "6.38.3",
@@ -24,7 +24,7 @@
     "react-dom": "^19.2.4",
     "resend": "^6.12.3",
     "sonner": "^2.0.7",
-    "tailwindcss": "^4.2.1",
+    "tailwindcss": "^4.3.3",
     "three": "^0.183.2",
     "vanilla-cookieconsent": "^3.1.0"
   },
