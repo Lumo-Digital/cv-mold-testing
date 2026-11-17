@@ -5,6 +5,24 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const ADMIN_EMAILS = ['hernan.baravalle@gmail.com', 'info@cvmoldtesting.com'];
 const FROM_EMAIL = 'CV Mold Testing <noreply@notifications.cvmoldtesting.com>';
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Every field ends up inside the email HTML, sent from our domain to the address typed in the form.
+function escapeHtml(value) {
+  return String(value ?? '').replace(
+    /[&<>"']/g,
+    (c) => `&#${c.charCodeAt(0)};`
+  );
+}
+
+function field(value, maxLength) {
+  return escapeHtml(
+    String(value ?? '')
+      .trim()
+      .slice(0, maxLength)
+  );
+}
+
 const PLAN_LABELS = {
   basic: 'Basic — 3 areas tested',
   standard: 'Standard — 6 areas tested',
@@ -13,7 +31,7 @@ const PLAN_LABELS = {
 };
 
 function buildConfirmationEmail(name, email, phone, zip, plan, message) {
-  const planLabel = PLAN_LABELS[plan] || plan;
+  const planLabel = PLAN_LABELS[plan] || 'Not specified';
   const messageRow = message
     ? `<tr>
         <td style="padding:12px 0;font-size:14px;color:#475569;font-weight:600;width:120px;vertical-align:top;border-top:1px solid #e2e8f0"><strong>Notes:</strong></td>
@@ -133,27 +151,35 @@ function buildConfirmationEmail(name, email, phone, zip, plan, message) {
 
 export const handler = async (event) => {
   try {
-    const body = JSON.parse(event.body);
-    console.log('Form submission received:', JSON.stringify(body));
+    const { payload } = JSON.parse(event.body);
+    if (payload?.form_name !== 'contact') return { statusCode: 200 };
 
-    const { payload } = body;
-    const { name, email, phone, zip, plan, message } = payload.data;
+    const data = payload.data ?? {};
+    const email = String(data.email ?? '').trim();
+    if (!EMAIL_PATTERN.test(email) || email.length > 254) {
+      console.warn('Submission skipped: invalid email');
+      return { statusCode: 200 };
+    }
 
-    console.log('Sending confirmation email to:', email);
-
-    const result = await resend.emails.send({
+    const { error } = await resend.emails.send({
       from: FROM_EMAIL,
       to: email,
       bcc: ADMIN_EMAILS,
       subject: 'We received your mold test request!',
-      html: buildConfirmationEmail(name, email, phone, zip, plan, message),
+      html: buildConfirmationEmail(
+        field(data.name, 100),
+        escapeHtml(email),
+        field(data.phone, 30),
+        field(data.zip, 10),
+        data.plan,
+        field(data.message, 2000)
+      ),
     });
-
-    console.log('Email result:', JSON.stringify(result));
+    if (error) throw new Error(`Resend: ${error.message}`);
 
     return { statusCode: 200 };
   } catch (error) {
-    console.error('Error in submission-created function:', error);
-    return { statusCode: 500, body: error.message };
+    console.error('Error in submission-created function:', error.message);
+    return { statusCode: 500 };
   }
 };

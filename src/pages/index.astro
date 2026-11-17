@@ -657,11 +657,23 @@ import {
                 id="contact-form"
                 name="contact"
                 data-netlify="true"
+                netlify-honeypot="bot-field"
                 class="grid grid-cols-6 gap-x-5"
                 method="POST"
                 novalidate
               >
                 <input type="hidden" name="form-name" value="contact" />
+                <!-- Honeypot: Netlify flags submissions that fill it as spam. -->
+                <div class="hidden" aria-hidden="true">
+                  <label for="bot-field">Website</label>
+                  <input
+                    type="text"
+                    id="bot-field"
+                    name="bot-field"
+                    tabindex="-1"
+                    autocomplete="off"
+                  />
+                </div>
                 <div
                   class="col-span-6 min-[720px]:col-span-3 flex flex-col mb-4"
                 >
@@ -1084,13 +1096,14 @@ import {
 
           try {
             const formData = new FormData(form);
-            await fetch('/', {
+            const response = await fetch('/', {
               method: 'POST',
               headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
               body: new URLSearchParams(
                 formData as unknown as Record<string, string>
               ).toString(),
             });
+            if (!response.ok) throw new Error(`Form POST ${response.status}`);
 
             submitBtn.classList.remove('bg-[#2C2F47]');
             submitBtn.classList.add('bg-[#31a948]');
